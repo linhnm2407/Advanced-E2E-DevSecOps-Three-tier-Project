@@ -31,10 +31,8 @@ pipeline {
                     withSonarQubeEnv('sonar-server') {
                         sh '''
                         $SCANNER_HOME/bin/sonar-scanner \
-                        -Dsonar.projectKey=three-tie-backend \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=https://app-sonarqube.linhnm.com \
-                        -Dsonar.login=squ_772cca21a9cd0cec861379e1fedc786218661158
+                        -Dsonar.projectName=three-tie-backend \
+                        -Dsonar.projectKey=three-tie-backend
                         '''
                     }
                 }
