@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-         stage('Sonarqube-Analysis') {
+        stage('Sonarqube-Analysis') {
             steps {
                 dir('Application-Code/backend') {
                     withSonarQubeEnv('sonar-server') {
@@ -40,7 +40,15 @@ pipeline {
                 }
                 
             }
-         }
+        }
+
+        stage('Quality Check') {
+            steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token' 
+                }
+            }
+        }
     }
 
 }
